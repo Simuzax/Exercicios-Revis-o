@@ -52,7 +52,7 @@ namespace ConsoleApp1
             Console.WriteLine(gold.Last());
 
             Console.WriteLine("Percentural de personagens com até 100 de Gold:");
-            Console.WriteLine(((gold.FindAll(x => x <= 100).Count) / gold.Count) * 100);
+            Console.WriteLine((((double)gold.FindAll(x => x <= 100).Count) * 100) / (double)gold.Count + "%");
 
             Console.ReadKey();
         }
