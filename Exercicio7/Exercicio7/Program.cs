@@ -92,7 +92,7 @@ namespace ConsoleApp4
 
         public void BolaDeFogo(Personagem alvo)
         {
-                
+
         }
 
         public override void MostrarDados()
