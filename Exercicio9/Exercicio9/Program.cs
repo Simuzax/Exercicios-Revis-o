@@ -92,7 +92,8 @@ namespace ConsoleApp4
 
         public void BolaDeFogo(Personagem alvo)
         {
-
+            Mp -= 5;
+            alvo.Hp -= 20;
         }
 
         public override void MostrarDados()
@@ -113,6 +114,7 @@ namespace ConsoleApp4
             int comandoent = -1;
             int comando;
 
+            //Pré-Criação
             while (comandoent != 0)
             {
                 Console.WriteLine("Que tipo de personagem deseja criar?");
@@ -205,6 +207,7 @@ namespace ConsoleApp4
             Personagem alvoP = new Personagem();
             Personagem atacanteP = new Personagem();
 
+            //Pós-Criação
             while (comandoent != 0)
             {
                 //ATACANTE
@@ -293,7 +296,7 @@ namespace ConsoleApp4
                 Console.WriteLine("-------------------------");
                 Console.WriteLine("O que deseja fazer agora?");
                 Console.WriteLine("1 - Mostrar os dados do Alvo e do Atacante escolhidos");
-                Console.WriteLine("2 - Mostrar ataques possiveis a serem realizados");
+                Console.WriteLine("2 - Mostrar ações possiveis a serem realizados");
 
                 comando = Convert.ToInt32(Console.ReadLine());
 
@@ -311,17 +314,17 @@ namespace ConsoleApp4
                     case 2:
                         if (atacanteP.GetType() == typeof(Guerreiro))
                         {
-
+                            Console.WriteLine("Ações possíveis: Atacar, Aumentar Dano");
                         }
 
                         if (atacanteP.GetType() == typeof(Inimigo))
                         {
-
+                            Console.WriteLine("Ações possíveis: Atacar, Roubar Vida");
                         }
 
                         if (atacanteP.GetType() == typeof(Mago))
                         {
-
+                            Console.WriteLine("Ações possíveis: Atacar, Bola de Fogo");
                         }
                         break;
                 }
