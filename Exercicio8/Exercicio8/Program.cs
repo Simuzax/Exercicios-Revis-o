@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp4
+namespace Exercicio8
 {
     class Personagem
     {
@@ -113,7 +113,9 @@ namespace ConsoleApp4
 
             while (comando != 0)
             {
+                Console.WriteLine("");
                 Console.WriteLine("-------------------------");
+                Console.WriteLine("");
                 Console.WriteLine("O que deseja fazer agora?");
                 Console.WriteLine("(Digite um dos valores a seguir para realizar uma ação)");
                 Console.WriteLine();
@@ -137,6 +139,8 @@ namespace ConsoleApp4
                         Console.WriteLine(guerreiro.nome + " ataca " + inimigo.nome);
                         guerreiro.Atacar(inimigo);
                         Console.WriteLine("O HP de " + inimigo.nome + " diminui para: " + inimigo.Hp);
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 2:
                         guerreiro.MostrarDados();
@@ -144,6 +148,8 @@ namespace ConsoleApp4
                         Console.WriteLine(inimigo.nome + " ataca " + guerreiro.nome);
                         inimigo.Atacar(guerreiro);
                         Console.WriteLine("O HP de " + guerreiro.nome + " diminui para: " + guerreiro.Hp);
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 3:
                         Console.WriteLine("HP e Força atual: " + guerreiro.Hp + ", " + guerreiro.Força);
@@ -151,6 +157,8 @@ namespace ConsoleApp4
                         guerreiro.AumentarForça();
                         Console.WriteLine("Seu HP diminui para: " + guerreiro.Hp);
                         Console.WriteLine("Sua Força aumenta para: " + guerreiro.Força);
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 4:
                         guerreiro.MostrarDados();
@@ -159,24 +167,34 @@ namespace ConsoleApp4
                         lifesteal = inimigo.RoubarVida(guerreiro);
                         Console.WriteLine(inimigo.nome + " se cura em: " + lifesteal);
                         Console.WriteLine(guerreiro.nome + " recebe " + lifesteal + " de dano");
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 5:
                         guerreiro.MostrarDados();
                         Console.WriteLine();
                         inimigo.MostrarDados();
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 6:
                         guerreiro.Hp = guerreiroHpBase;
                         guerreiro.Força = guerreiroForçaBase;
                         Console.WriteLine("Valores resetados");
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 7:
                         inimigo.Hp = inimigoHpBase;
                         inimigo.Força = inimigoForçaBase;
                         Console.WriteLine("Valores resetados");
+                        Console.WriteLine("Aperte qualquer tecla para continuar:");
+                        Console.ReadKey();
                         break;
                     case 0:
                         comando = 0;
+                        Console.WriteLine("Você escolheu fechar seu jogo");
+                        Console.ReadKey();
                         break;
                 }
             }
