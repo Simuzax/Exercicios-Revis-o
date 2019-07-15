@@ -46,6 +46,11 @@ namespace ConsoleApp4
         {
             alvo.Hp -= Força;
         }
+
+        public virtual void AcoesDisponiveis()
+        {
+            Console.WriteLine("Ações possíveis: Atacar");
+        }
     }
 
     class Guerreiro : Personagem
@@ -54,6 +59,11 @@ namespace ConsoleApp4
         {
             Hp -= 5;
             Força += 5;
+        }
+
+        public override void AcoesDisponiveis()
+        {
+            Console.WriteLine("Ações possíveis: Atacar, Aumentar Dano");
         }
     }
 
@@ -73,10 +83,17 @@ namespace ConsoleApp4
 
             return lifesteal;
         }
+
+        public override void AcoesDisponiveis()
+        {
+            Console.WriteLine("Ações possíveis: Atacar, Roubar Vida");
+        }
     }
 
     class Mago : Personagem
     {
+        public int MpBase;
+
         private double mp_;
         public double Mp
         {
@@ -99,6 +116,11 @@ namespace ConsoleApp4
         public override void MostrarDados()
         {
             Console.WriteLine("HP, Força e MP atual de " + nome + ": " + Hp + ", " + Força + " e " + Mp);
+        }
+
+        public override void AcoesDisponiveis()
+        {
+            Console.WriteLine("Ações possíveis: Atacar, Bola de Fogo");
         }
     }
 
@@ -184,7 +206,7 @@ namespace ConsoleApp4
                         mago1.Força = mago1.ForçaBase = Convert.ToInt32(Console.ReadLine());
 
                         Console.WriteLine("Escolha a Mana do Mago");
-                        mago1.Mp = Convert.ToInt32(Console.ReadLine());
+                        mago1.Mp = mago1.MpBase = Convert.ToInt32(Console.ReadLine());
 
                         id++;
                         mago1.Id = id;
@@ -312,20 +334,79 @@ namespace ConsoleApp4
                         break;
 
                     case 2:
+                        atacanteP.AcoesDisponiveis();
+                        break;
+                }
+
+                Console.WriteLine("-------------------------");
+                Console.WriteLine("Que tipo de ataque deseja realizar?");
+                Console.WriteLine("1 - Atacar");
+
+                if (atacanteP.GetType() == typeof(Guerreiro))
+                    Console.WriteLine("2 - Aumentar Força");
+
+                if (atacanteP.GetType() == typeof(Inimigo))
+                    Console.WriteLine("2 - Roubar Vida");
+
+                if (atacanteP.GetType() == typeof(Mago))
+                    Console.WriteLine("2 - Bola de Fogo");
+
+                Console.WriteLine("3 - Resetar os valores do Atacante para os seus Iniciais");
+                Console.WriteLine("4 - Resetar os valores do Alvo para os seus Iniciais");
+                Console.WriteLine("5 - Resetar os valores de todos os personagens não-Inimigos para o seu valor inicial");
+                Console.WriteLine("6 - Resetar os valores de todos os personagens Inimigos para o seu valor inicial");
+                Console.WriteLine("7 - Mostrar os dados de todos os Personagens Cadastrados");
+                Console.WriteLine("0 - Fechar o programa");
+
+                comando = Convert.ToInt32(Console.ReadLine());
+
+                switch (comando)
+                {
+                    case 1:
+                        atacanteP.Atacar(alvoP);
+                        break;
+
+                    case 2:
                         if (atacanteP.GetType() == typeof(Guerreiro))
-                        {
-                            Console.WriteLine("Ações possíveis: Atacar, Aumentar Dano");
-                        }
+                            atacanteP.AumentarForça();
 
                         if (atacanteP.GetType() == typeof(Inimigo))
-                        {
-                            Console.WriteLine("Ações possíveis: Atacar, Roubar Vida");
-                        }
+                            atacanteP.RoubarVida(alvoP);
 
                         if (atacanteP.GetType() == typeof(Mago))
-                        {
-                            Console.WriteLine("Ações possíveis: Atacar, Bola de Fogo");
-                        }
+                            atacanteP.BolaDeFogo(alvoP);
+
+                        break;
+
+                    case 3:
+                        atacanteP.Hp = atacanteP.HpBase;
+                        atacanteP.Força = atacanteP.ForçaBase;
+
+                        if (atacanteP.GetType() == typeof(Mago))
+                            atacanteP.Mp = atacanteP.MpBase;
+
+                        break;
+
+                    case 4:
+                        alvoP.Hp = alvoP.HpBase;
+                        alvoP.Força = alvoP.ForçaBase;
+
+                        if (alvoP.GetType() == typeof(Mago))
+                            alvoP.Mp = alvoP.MpBase;
+
+                        break;
+
+                    case 5:
+                        break;
+
+                    case 6:
+                        break;
+
+                    case 7:
+                        break;
+
+                    case 0:
+                        comandoent = 0;
                         break;
                 }
             }
